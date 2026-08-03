@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qwen API 모델 및 요금제 안내</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            background-color: #fff;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #667eea;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #667eea;
+            color: white;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: #764ba2;
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.3rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        .free-tier {
+            background-color: #d4edda !important;
+            font-weight: 600;
+        }
+
+        .free-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .info-box {
+            background-color: #e7f3ff;
+            border-left: 4px solid #667eea;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+
+        .model-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            background: #fafafa;
+        }
+
+        .model-name {
+            font-size: 1.4rem;
+            color: #667eea;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🚀 Qwen API 모델 안내</h1>
+        <p>Alibaba Cloud 의 대규모 언어 모델 Qwen 시리즈 소개 및 요금제 안내</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#models">모델 소개</a></li>
+            <li><a href="#pricing">요금제</a></li>
+            <li><a href="#free-tier">Free Tier</a></li>
+            <li><a href="#billing">과금 체계</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- 모델 소개 섹션 -->
+        <section id="models">
+            <h2>📋 Qwen API 모델 소개</h2>
+            <p>Qwen 은 Alibaba Cloud 에서 개발한 대규모 언어 모델 시리즈로, 다양한 크기와 용도의 모델이 제공됩니다.</p>
+
+            <div class="model-card">
+                <div class="model-name">Qwen-Max</div>
+                <p><strong>특징:</strong> 가장 강력한 성능을 자랑하는 플래그십 모델로, 복잡한 추론과 고급 작업에 최적화되어 있습니다.</p>
+                <p><strong>용도:</strong> 복잡한 문제 해결, 전문적인 분석, 고품질 콘텐츠 생성</p>
+            </div>
+
+            <div class="model-card">
+                <div class="model-name">Qwen-Plus</div>
+                <p><strong>특징:</strong> 성능과 비용 효율성의 균형을 맞춘 모델로, 다양한 작업에 적합합니다.</p>
+                <p><strong>용도:</strong> 일반적인 업무 자동화, 고객 지원, 콘텐츠 작성</p>
+            </div>
+
+            <div class="model-card">
+                <div class="model-name">Qwen-Turbo</div>
+                <p><strong>특징:</strong> 빠른 응답 속도와 낮은 비용으로 실시간 애플리케이션에 이상적입니다.</p>
+                <p><strong>용도:</strong> 실시간 채팅, 빠른 응답이 필요한 서비스, 대량 처리</p>
+            </div>
+
+            <div class="model-card">
+                <div class="model-name">Qwen-Long</div>
+                <p><strong>특징:</strong> 긴 컨텍스트 윈도우를 지원하여 장문 문서 처리에 특화되어 있습니다.</p>
+                <p><strong>용도:</strong> 장문 문서 분석, 논문 요약, 법률 문서 처리</p>
+            </div>
+
+            <div class="model-card">
+                <div class="model-name">Qwen-VL (Vision-Language)</div>
+                <p><strong>특징:</strong> 이미지와 텍스트를 동시에 처리할 수 있는 멀티모달 모델입니다.</p>
+                <p><strong>용도:</strong> 이미지 분석, 시각적 질문 답변, OCR 작업</p>
+            </div>
+
+            <div class="model-card">
+                <div class="model-name">Qwen-Audio</div>
+                <p><strong>특징:</strong> 음성 및 오디오 데이터를 처리할 수 있는 멀티모달 모델입니다.</p>
+                <p><strong>용도:</strong> 음성 인식, 오디오 분석, 음악 이해</p>
+            </div>
+        </section>
+
+        <!-- 요금제 섹션 -->
+        <section id="pricing">
+            <h2>💰 모델별 요금제</h2>
+            <p>Qwen API 는 사용량 기반 과금 체계를 채택하고 있으며, 모델별로 상이한 요금이 적용됩니다.</p>
+            
+            <div class="info-box">
+                <strong>💡 참고:</strong> 모든 가격은 1,000 토큰 (input + output) 기준이며, 실제 과금은 사용된 토큰 수에 따라 계산됩니다.
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>모델명</th>
+                        <th>Input 가격 (1K 토큰)</th>
+                        <th>Output 가격 (1K 토큰)</th>
+                        <th>컨텍스트 길이</th>
+                        <th>추천 용도</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Qwen-Max</strong></td>
+                        <td>$0.040</td>
+                        <td>$0.120</td>
+                        <td>32K tokens</td>
+                        <td>복잡한 추론, 전문 작업</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Qwen-Plus</strong></td>
+                        <td>$0.004</td>
+                        <td>$0.012</td>
+                        <td>32K tokens</td>
+                        <td>일반적인 업무, 밸런스</td>
+                    </tr>
+                    <tr class="free-tier">
+                        <td><strong>Qwen-Turbo</strong> <span class="free-badge">FREE TIER</span></td>
+                        <td>$0.002</td>
+                        <td>$0.006</td>
+                        <td>6K tokens</td>
+                        <td>실시간 응답, 대량 처리</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Qwen-Long</strong></td>
+                        <td>$0.005</td>
+                        <td>$0.010</td>
+                        <td>10M tokens</td>
+                        <td>장문 문서 분석</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Qwen-VL Plus</strong></td>
+                        <td>$0.006</td>
+                        <td>$0.006</td>
+                        <td>8K tokens</td>
+                        <td>이미지 분석, 비주얼 QA</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Qwen-VL Max</strong></td>
+                        <td>$0.020</td>
+                        <td>$0.020</td>
+                        <td>8K tokens</td>
+                        <td>고급 이미지 분석</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Qwen-Audio</strong></td>
+                        <td>$0.008</td>
+                        <td>$0.008</td>
+                        <td>8K tokens</td>
+                        <td>음성 처리, 오디오 분석</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="warning-box">
+                <strong>⚠️ 주의사항:</strong> 위 가격은 참고용이며, 실제 가격은 Alibaba Cloud 정책 변경에 따라 달라질 수 있습니다. 최신 가격은 공식 문서를 확인해주세요.
+            </div>
+        </section>
+
+        <!-- Free Tier 섹션 -->
+        <section id="free-tier">
+            <h2>🎁 Free Tier (무료 사용 한도)</h2>
+            <p>Qwen API 는 신규 사용자와 소규모 프로젝트를 위해 무료 사용 한도를 제공합니다.</p>
+
+            <h3>✅ Free Tier 조건 및 제한사항</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>항목</th>
+                        <th>내용</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>대상 모델</strong></td>
+                        <td>Qwen-Turbo (일부 지역 한정)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>월간 무료 토큰</strong></td>
+                        <td>100 만 토큰 (Input + Output 합산)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>유효 기간</strong></td>
+                        <td>계정 생성 후 3 개월 간</td>
+                    </tr>
+                    <tr>
+                        <td><strong>재활성화</strong></td>
+                        <td>불가 (1 회 한정)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>필수 조건</strong></td>
+                        <td>신규 Alibaba Cloud 계정, 전화번호 인증 완료</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>📝 Free Tier 사용 조건 상세</h3>
+
+            <div class="info-box">
+                <strong>✨ 무료 사용 가능 조건:</strong>
+                <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+                    <li>Alibaba Cloud 에 처음 가입한 신규 사용자만 해당</li>
+                    <li>전화번호 인증을 완료한 계정에 한함</li>
+                    <li>Qwen-Turbo 모델만 무료 사용 가능</li>
+                    <li>매월 100 만 토큰까지 무료 (초과 시 일반 요금 적용)</li>
+                    <li>계정 생성일로부터 90 일 동안만 유효</li>
+                    <li>개인 프로젝트, 학습, 테스트 목적으로만 사용 권장</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ Free Tier 제한사항:</strong>
+                <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+                    <li>상업적 이용은 제한될 수 있음</li>
+                    <li>Rate Limit 이 적용됨 (분당 요청 수 제한)</li>
+                    <li>우선순위 지원에서 제외됨</li>
+                    <li>일부 고급 기능 사용 불가</li>
+                    <li>무료 한도 초과 시 자동으로 유료 전환</li>
+                </ul>
+            </div>
+
+            <h3>🔄 Free Tier 초과 시 과금</h3>
+            <p>월간 무료 한도 (100 만 토큰) 를 초과하면 자동으로 Qwen-Turbo 의 일반 요금이 적용됩니다:</p>
+            <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                <li>Input: $0.002 / 1K 토큰</li>
+                <li>Output: $0.006 / 1K 토큰</li>
+            </ul>
+        </section>
+
+        <!-- 과금 체계 섹션 -->
+        <section id="billing">
+            <h2>💳 과금 체계 상세</h2>
+            <p>Qwen API 의 과금 방식과 결제 방법에 대해 설명합니다.</p>
+
+            <h3>📊 과금 방식</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>과금 항목</th>
+                        <th>설명</th>
+                        <th>단위</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Input Tokens</strong></td>
+                        <td>API 로 전송한 프롬프트 (질문) 의 토큰 수</td>
+                        <td>1,000 토큰당</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Output Tokens</strong></td>
+                        <td>모델이 생성한 응답의 토큰 수</td>
+                        <td>1,000 토큰당</td>
+                    </tr>
+                    <tr>
+                        <td><strong>이미지 처리</strong></td>
+                        <td>VL 모델 사용 시 이미지당 추가 과금</td>
+                        <td>이미지당</td>
+                    </tr>
+                    <tr>
+                        <td><strong>오디오 처리</strong></td>
+                        <td>Audio 모델 사용 시 오디오 분량당 과금</td>
+                        <td>분당</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>💡 토큰 계산 방법</h3>
+            <div class="info-box">
+                <strong>토큰이란?</strong><br>
+                토큰은 텍스트의 기본 단위로, 일반적으로:<br>
+                • 영어: 약 4 문자 = 1 토큰<br>
+                • 한국어: 약 2~3 글자 = 1 토큰<br>
+                • 예시: "안녕하세요" ≈ 2-3 토큰
+            </div>
+
+            <h3>📈 과금 예시</h3>
+            
+            <div class="model-card">
+                <strong>예시 1: Qwen-Turbo 사용 시</strong><br>
+                Input: 5,000 토큰 + Output: 3,000 토큰 = 총 8,000 토큰<br>
+                <br>
+                계산:<br>
+                • Input 비용: 5 × $0.002 = $0.010<br>
+                • Output 비용: 3 × $0.006 = $0.018<br>
+                <strong>총 비용: $0.028</strong>
+            </div>
+
+            <div class="model-card">
+                <strong>예시 2: Qwen-Max 사용 시</strong><br>
+                Input: 10,000 토큰 + Output: 5,000 토큰 = 총 15,000 토큰<br>
+                <br>
+                계산:<br>
+                • Input 비용: 10 × $0.040 = $0.400<br>
+                • Output 비용: 5 × $0.120 = $0.600<br>
+                <strong>총 비용: $1.000</strong>
+            </div>
+
+            <h3>💰 결제 방법</h3>
+            <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                <li><strong>선불 충전 (Prepaid):</strong> Alibaba Cloud 계정에 크레딧 선충전 후 사용</li>
+                <li><strong>후불 결제 (Postpaid):</strong> 매월 사용량에 따라 청구서 발급</li>
+                <li><strong>지원 통화:</strong> USD, CNY, KRW 등 지역별 상이</li>
+                <li><strong>결제 수단:</strong> 신용카드, 직불카드, 계좌이체, Alipay 등</li>
+            </ul>
+
+            <h3>📅 청구 주기</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>결제 유형</th>
+                        <th>청구 주기</th>
+                        <th>결제일</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>후불제</td>
+                        <td>매월 1 일 ~ 말일</td>
+                        <td>익월 10 일</td>
+                    </tr>
+                    <tr>
+                        <td>선불제</td>
+                        <td>사용 시 자동 차감</td>
+                        <td>충전 시점</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>🔍 비용 절감 팁</h3>
+            <div class="info-box">
+                <strong>💡 비용을 절약하는 방법:</strong>
+                <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+                    <li>작업에 적합한 모델 선택 (간단한 작업은 Turbo 사용)</li>
+                    <li>프롬프트 최적화로 토큰 사용량 줄이기</li>
+                    <li>응답 길이 (max_tokens) 적절히 설정</li>
+                    <li>캐싱 활용하여 반복 요청 최소화</li>
+                    <li>Free Tier 한도 효과적으로 활용</li>
+                    <li>사용량 모니터링 및 알림 설정</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Qwen API 가이드 | 본 사이트는 정보 제공 목적으로만 제작되었습니다.</p>
+        <p>최신 정보는 <a href="https://www.alibabacloud.com" style="color: #667eea;">Alibaba Cloud 공식 웹사이트</a> 를 확인해주세요.</p>
+    </footer>
+
+    <script>
+        // 부드러운 스크롤 이동
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // 현재 위치 기반 네비게이션 활성화
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.backgroundColor = '';
+                link.style.color = '';
+                if (link.getAttribute('href') === '#' + current) {
+                    link.style.backgroundColor = '#667eea';
+                    link.style.color = 'white';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
