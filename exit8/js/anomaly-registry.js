@@ -20,17 +20,7 @@ export const ANOMALY_REGISTRY = {
     severity: 'low',
     renderConfig: {
       element: 'div',
-      class: 'anomaly-poster',
-      style: {
-        position: 'absolute',
-        left: '10%',
-        top: '30%',
-        width: '15%',
-        height: '20%',
-        backgroundColor: '#ff6b6b',
-        border: '2px solid #333',
-        zIndex: 2
-      }
+      class: 'anomaly-poster'
     }
   },
   [ANOMALY_TYPES.LIGHT]: {
@@ -40,18 +30,7 @@ export const ANOMALY_REGISTRY = {
     severity: 'medium',
     renderConfig: {
       element: 'div',
-      class: 'anomaly-light',
-      style: {
-        position: 'absolute',
-        left: '50%',
-        top: '5%',
-        transform: 'translateX(-50%)',
-        width: '40%',
-        height: '10px',
-        backgroundColor: '#ffeb3b',
-        boxShadow: '0 0 15px #ffeb3b',
-        animation: 'flicker 0.5s infinite'
-      }
+      class: 'anomaly-light'
     }
   },
   [ANOMALY_TYPES.FLOOR]: {
@@ -61,17 +40,7 @@ export const ANOMALY_REGISTRY = {
     severity: 'low',
     renderConfig: {
       element: 'div',
-      class: 'anomaly-floor',
-      style: {
-        position: 'absolute',
-        left: '30%',
-        bottom: '10%',
-        width: '40%',
-        height: '10%',
-        backgroundColor: '#4a4a4a',
-        clipPath: 'polygon(0% 0%, 100% 0%, 80% 100%, 20% 100%)',
-        zIndex: 1
-      }
+      class: 'anomaly-floor'
     }
   },
   [ANOMALY_TYPES.SIGN]: {
@@ -82,23 +51,6 @@ export const ANOMALY_REGISTRY = {
     renderConfig: {
       element: 'div',
       class: 'anomaly-sign',
-      style: {
-        position: 'absolute',
-        right: '15%',
-        top: '25%',
-        width: '8%',
-        height: '8%',
-        backgroundColor: '#fff',
-        border: '2px solid green',
-        color: 'green',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '20px',
-        fontWeight: 'bold',
-        transform: 'rotate(180deg)',
-        zIndex: 3
-      },
       content: 'EXIT'
     }
   },
@@ -109,18 +61,7 @@ export const ANOMALY_REGISTRY = {
     severity: 'high',
     renderConfig: {
       element: 'div',
-      class: 'anomaly-shadow',
-      style: {
-        position: 'absolute',
-        left: '70%',
-        top: '40%',
-        width: '10%',
-        height: '30%',
-        backgroundColor: 'rgba(0,0,0,0.6)',
-        filter: 'blur(5px)',
-        transform: 'skewX(-20deg)',
-        zIndex: 1
-      }
+      class: 'anomaly-shadow'
     }
   },
   [ANOMALY_TYPES.DOOR]: {
@@ -131,16 +72,6 @@ export const ANOMALY_REGISTRY = {
     renderConfig: {
       element: 'div',
       class: 'anomaly-door',
-      style: {
-        position: 'absolute',
-        left: '5%',
-        top: '20%',
-        width: '12%',
-        height: '35%',
-        border: '3px solid #555',
-        backgroundColor: '#222',
-        zIndex: 2
-      },
       content: ''
     }
   },
@@ -151,19 +82,7 @@ export const ANOMALY_REGISTRY = {
     severity: 'critical',
     renderConfig: {
       element: 'div',
-      class: 'anomaly-hand',
-      style: {
-        position: 'absolute',
-        right: '20%',
-        top: '50%',
-        width: '60px',
-        height: '80px',
-        backgroundColor: '#ffccbc',
-        borderRadius: '30px 30px 10px 10px',
-        boxShadow: 'inset -5px -5px 10px rgba(0,0,0,0.2)',
-        zIndex: 4,
-        transform: 'rotate(-10deg)'
-      }
+      class: 'anomaly-hand'
     }
   },
   [ANOMALY_TYPES.FIGURE]: {
@@ -174,46 +93,14 @@ export const ANOMALY_REGISTRY = {
     renderConfig: {
       element: 'div',
       class: 'anomaly-figure',
-      style: {
-        position: 'absolute',
-        left: '50%',
-        top: '35%',
-        transform: 'translateX(-50%)',
-        width: '40px',
-        height: '100px',
-        backgroundColor: '#000',
-        borderRadius: '20px 20px 0 0',
-        zIndex: 1,
-        opacity: '0.9'
-      },
       children: [
         {
           element: 'div',
-          class: 'eyes',
-          style: {
-            position: 'absolute',
-            top: '20px',
-            left: '10px',
-            width: '6px',
-            height: '6px',
-            backgroundColor: '#fff',
-            borderRadius: '50%',
-            animation: 'glow 2s infinite'
-          }
+          class: 'eyes'
         },
         {
           element: 'div',
-          class: 'eyes',
-          style: {
-            position: 'absolute',
-            top: '20px',
-            right: '10px',
-            width: '6px',
-            height: '6px',
-            backgroundColor: '#fff',
-            borderRadius: '50%',
-            animation: 'glow 2s infinite'
-          }
+          class: 'eyes'
         }
       ]
     }

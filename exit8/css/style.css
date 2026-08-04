@@ -299,8 +299,9 @@ body {
 /* ============ 통로 디자인 (2.5D 표현) ============ */
 .corridor {
     position: relative;
-    width: 800px;
-    height: 500px;
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 8 / 5;
     perspective: 1000px;
     transform-style: preserve-3d;
 }
@@ -505,8 +506,4 @@ body {
 
 .fade-in {
     animation: fadeIn 0.5s ease-in;
-}
-
-.hidden {
-    display: none !important;
 }
