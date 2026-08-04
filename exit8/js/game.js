@@ -73,16 +73,20 @@ class Game {
     initElements() {
         this.elements = {
             menuScreen: document.getElementById('menu-screen'),
+            anomalyListScreen: document.getElementById('anomaly-list-screen'),
             gameScreen: document.getElementById('game-screen'),
             resultScreen: document.getElementById('result-screen'),
             currentRound: document.getElementById('current-round'),
             statusText: document.getElementById('status-text'),
             corridorContainer: document.getElementById('corridor-container'),
             anomalyContainer: document.getElementById('anomaly-container'),
+            anomalyGrid: document.getElementById('anomaly-grid'),
             resultTitle: document.getElementById('result-title'),
             resultMessage: document.getElementById('result-message'),
             finalRound: document.getElementById('final-round'),
             startBtn: document.getElementById('start-btn'),
+            anomalyListBtn: document.getElementById('anomaly-list-btn'),
+            backToMenuBtn: document.getElementById('back-to-menu-btn'),
             restartBtn: document.getElementById('restart-btn'),
             menuBtn: document.getElementById('menu-btn'),
             btnForward: document.getElementById('btn-forward'),
@@ -98,6 +102,8 @@ class Game {
     initEventListeners() {
         // 메인 메뉴 버튼
         this.elements.startBtn.addEventListener('click', () => this.startGame());
+        this.elements.anomalyListBtn.addEventListener('click', () => this.showAnomalyList());
+        this.elements.backToMenuBtn.addEventListener('click', () => this.showMenu());
         this.elements.restartBtn.addEventListener('click', () => this.startGame());
         this.elements.menuBtn.addEventListener('click', () => this.showMenu());
 
@@ -109,6 +115,88 @@ class Game {
 
         // 키보드 단축키
         document.addEventListener('keydown', (e) => this.handleKeyPress(e));
+        
+        // 이상 현상 목록 초기화
+        this.initAnomalyList();
+    }
+
+    /**
+     * 이상 현상 목록 초기화 및 렌더링
+     */
+    initAnomalyList() {
+        const anomalies = [
+            {
+                icon: '🪧',
+                name: '포스터 색상 변화',
+                description: '벽에 붙은 광고 포스터의 색상이 비정상적으로 변합니다.',
+                example: '예: 파란색 포스터가 빨간색으로 변함'
+            },
+            {
+                icon: '💡',
+                name: '조명 깜빡임',
+                description: '천장의 형광등이 심하게 깜빡이거나 꺼집니다.',
+                example: '예: 불이 규칙적으로 깜빡임'
+            },
+            {
+                icon: '💧',
+                name: '물웅덩이',
+                description: '바닥에 물웅덩이가 생겨 있습니다.',
+                example: '예: 통로 중앙에 큰 물웅덩이'
+            },
+            {
+                icon: '👤',
+                name: '유령 같은 형상',
+                description: '먼 곳에 검은 사람 형상이 서 있습니다.',
+                example: '예: 통로 끝에 검은 실루엣'
+            },
+            {
+                icon: '✋',
+                name: '벽에서 나온 손',
+                description: '벽 틈에서 손이 뻗어 나오고 있습니다.',
+                example: '예: 왼쪽 벽에서 손이 튀어나옴'
+            },
+            {
+                icon: '🚪',
+                name: '열린 문',
+                description: '평소에는 없는 문이 열려 있습니다.',
+                example: '예: 오른쪽 벽에 열린 비상구'
+            },
+            {
+                icon: '🔀',
+                name: '바닥 패턴 변화',
+                description: '바닥 타일의 패턴이 일부 다릅니다.',
+                example: '예: 타일 무늬가 거꾸로 되어 있음'
+            },
+            {
+                icon: '🪧',
+                name: '사인판 방향 변경',
+                description: '출구 표시판의 화살표 방향이 반대입니다.',
+                example: '예: 오른쪽 화살표가 왼쪽을 가리킴'
+            },
+            {
+                icon: '🌫️',
+                name: '이상한 안개',
+                description: '통로에 평소에는 없는 안개가 끼어 있습니다.',
+                example: '예: 바닥에 낮은 안개'
+            },
+            {
+                icon: '🖼️',
+                name: '그림 변화',
+                description: '벽에 걸린 그림의 내용이 변했습니다.',
+                example: '예: 인물화가 풍경화로 변함'
+            }
+        ];
+
+        if (this.elements.anomalyGrid) {
+            this.elements.anomalyGrid.innerHTML = anomalies.map(anomaly => `
+                <div class="anomaly-card">
+                    <div class="anomaly-icon">${anomaly.icon}</div>
+                    <div class="anomaly-name">${anomaly.name}</div>
+                    <div class="anomaly-description">${anomaly.description}</div>
+                    <div class="anomaly-example">${anomaly.example}</div>
+                </div>
+            `).join('');
+        }
     }
 
     /**
@@ -364,6 +452,13 @@ class Game {
     showMenu() {
         this.isPlaying = false;
         this.switchScreen('menu');
+    }
+
+    /**
+     * 이상 현상 목록 화면 표시
+     */
+    showAnomalyList() {
+        this.switchScreen('anomaly-list');
     }
 
     /**
