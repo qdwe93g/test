@@ -1,0 +1,392 @@
+/* Exit 8 - 메인 스타일시트 */
+
+/* ============ 리셋 및 기본 스타일 ============ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif;
+    background-color: #1a1a2e;
+    color: #eee;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* ============ 공통 유틸리티 ============ */
+.screen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1a1a2e;
+}
+
+.screen.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ============ 버튼 스타일 ============ */
+.btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 8px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #485563 0%, #29323c 100%);
+    color: white;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #cb2d3e 0%, #ef473a 100%);
+    color: white;
+}
+
+/* ============ 메인 메뉴 화면 ============ */
+#menu-screen {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+.menu-content {
+    text-align: center;
+    padding: 40px;
+    max-width: 600px;
+}
+
+.game-title {
+    font-size: 4rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+    letter-spacing: 8px;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: #aaa;
+    margin-bottom: 40px;
+}
+
+.instructions {
+    margin-top: 40px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    text-align: left;
+}
+
+.instructions h3 {
+    color: #667eea;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.instructions ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.instructions li {
+    padding: 8px 0;
+    color: #ccc;
+    line-height: 1.6;
+}
+
+.instructions li strong {
+    color: #667eea;
+}
+
+/* ============ 게임 화면 ============ */
+#game-screen {
+    flex-direction: column;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 2px solid #333;
+}
+
+.round-display {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #667eea;
+}
+
+.round-display span:nth-child(2) {
+    font-size: 2rem;
+    color: #fff;
+    margin: 0 10px;
+}
+
+.status-display {
+    font-size: 1.1rem;
+    color: #aaa;
+}
+
+.game-view {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow: hidden;
+}
+
+/* ============ 통로 디자인 (2.5D 표현) ============ */
+.corridor {
+    position: relative;
+    width: 800px;
+    height: 500px;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.corridor-wall {
+    position: absolute;
+    background: linear-gradient(180deg, #d4c5b0 0%, #b8a992 100%);
+    border: 2px solid #8b7355;
+}
+
+.left-wall {
+    width: 150px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    transform: rotateY(10deg);
+    transform-origin: right center;
+}
+
+.right-wall {
+    width: 150px;
+    height: 100%;
+    right: 0;
+    top: 0;
+    transform: rotateY(-10deg);
+    transform-origin: left center;
+}
+
+.corridor-floor {
+    position: absolute;
+    width: 100%;
+    height: 200px;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        90deg,
+        #c4b5a0 0px,
+        #c4b5a0 50px,
+        #b8a992 50px,
+        #b8a992 100px
+    );
+    transform: rotateX(60deg);
+    transform-origin: bottom center;
+    border-top: 3px solid #8b7355;
+}
+
+.corridor-ceiling {
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    top: 0;
+    background: linear-gradient(180deg, #e8e0d0 0%, #d4c5b0 100%);
+    transform: rotateX(-60deg);
+    transform-origin: top center;
+    border-bottom: 3px solid #8b7355;
+}
+
+.corridor-back {
+    position: absolute;
+    width: 500px;
+    height: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(180deg, #d4c5b0 0%, #b8a992 100%);
+    border: 3px solid #8b7355;
+}
+
+/* 조명 효과 */
+.corridor-ceiling::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 20px;
+    background: #fff;
+    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+}
+
+/* 이상 현상 컨테이너 */
+#anomaly-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* ============ 게임 컨트롤 ============ */
+.game-controls {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-top: 2px solid #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.control-group {
+    display: flex;
+    gap: 15px;
+}
+
+.judgment-controls {
+    margin-top: 10px;
+}
+
+/* ============ 결과 화면 ============ */
+#result-screen {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+.result-content {
+    text-align: center;
+    padding: 40px;
+    max-width: 500px;
+}
+
+#result-title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+#result-message {
+    font-size: 1.3rem;
+    color: #ccc;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+#result-stats {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+#result-stats p {
+    font-size: 1.2rem;
+    color: #aaa;
+}
+
+#result-stats span {
+    color: #667eea;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+/* ============ 반응형 디자인 ============ */
+@media (max-width: 768px) {
+    .game-title {
+        font-size: 2.5rem;
+        letter-spacing: 4px;
+    }
+
+    .corridor {
+        width: 100%;
+        height: 300px;
+    }
+
+    .left-wall,
+    .right-wall {
+        width: 80px;
+    }
+
+    .corridor-back {
+        width: 300px;
+        height: 180px;
+    }
+
+    .game-header {
+        padding: 10px 15px;
+    }
+
+    .round-display {
+        font-size: 1.2rem;
+    }
+
+    .round-display span:nth-child(2) {
+        font-size: 1.5rem;
+    }
+
+    .btn {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+
+    .control-group {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+/* ============ 유틸리티 클래스 ============ */
+.hidden {
+    display: none !important;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
