@@ -142,32 +142,6 @@ export class Game {
     return icons[name] || '❓';
   }
 
-  handleKeyPress(e) {
-    if (!this.isPlaying) return;
-
-    switch(e.key) {
-      case 'ArrowRight':
-      case 'd':
-      case 'D':
-        this.moveForward();
-        break;
-      case 'ArrowLeft':
-      case 'a':
-      case 'A':
-        this.moveBackward();
-        break;
-      case 'Enter':
-      case ' ':
-        this.judgeNormal();
-        break;
-      case 'Escape':
-      case 'x':
-      case 'X':
-        this.judgeAnomaly();
-        break;
-    }
-  }
-
   startGame() {
     this.currentRound = 1;
     this.isPlaying = true;
@@ -178,7 +152,7 @@ export class Game {
     this.switchScreen('game');
     this.updateRoundDisplay();
     this.loadRound();
-    this.updateStatus('라운드를 탐색하세요. 이상한 점을 찾아주세요!');
+    this.updateStatus('통로를 잘 관찰하세요. 이상한 점이 있나요?');
   }
 
   loadRound() {
@@ -189,7 +163,7 @@ export class Game {
       window.renderer.renderCorridor(this.currentRound, this.hasAnomaly, config.anomalyType);
     }
     
-    this.updateStatus(config.description);
+    this.updateStatus('통로를 잘 관찰하세요. 이상한 점이 있나요?');
     this.playerJudgment = null;
   }
 
@@ -197,22 +171,12 @@ export class Game {
     if (!this.isPlaying) return;
     
     this.animateMovement('forward');
-    this.updateStatus('앞으로 이동합니다...');
-    
-    setTimeout(() => {
-      this.updateStatus('통로를 관찰하고 판단해주세요.');
-    }, 600);
   }
 
   moveBackward() {
     if (!this.isPlaying) return;
     
     this.animateMovement('backward');
-    this.updateStatus('뒤로 이동합니다...');
-    
-    setTimeout(() => {
-      this.updateStatus('통로를 관찰하고 판단해주세요.');
-    }, 600);
   }
 
   animateMovement(direction) {
@@ -270,6 +234,36 @@ export class Game {
     }
 
     this.playerJudgment = null;
+  }
+
+  handleKeyPress(e) {
+    if (!this.isPlaying) return;
+
+    switch(e.key) {
+      case 'ArrowRight':
+      case 'd':
+      case 'D':
+        e.preventDefault();
+        this.moveForward();
+        break;
+      case 'ArrowLeft':
+      case 'a':
+      case 'A':
+        e.preventDefault();
+        this.moveBackward();
+        break;
+      case 'Enter':
+      case ' ':
+        e.preventDefault();
+        this.judgeNormal();
+        break;
+      case 'Escape':
+      case 'x':
+      case 'X':
+        e.preventDefault();
+        this.judgeAnomaly();
+        break;
+    }
   }
 
   gameVictory() {

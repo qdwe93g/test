@@ -50,7 +50,7 @@
                 <span id="current-round">1</span>
                 <span>/ 8</span>
             </div>
-            <div class="status-display">
+            <div class="status-display" aria-live="polite">
                 <span id="status-text">통로를 탐색하세요</span>
             </div>
         </header>
@@ -71,12 +71,12 @@
 
         <footer class="game-controls">
             <div class="control-group">
-                <button id="btn-back" class="btn btn-secondary">⬅️ 뒤로</button>
-                <button id="btn-forward" class="btn btn-primary">앞으로 ➡️</button>
+                <button id="btn-back" class="btn btn-secondary" aria-label="뒤로 이동">⬅️ 뒤로</button>
+                <button id="btn-forward" class="btn btn-primary" aria-label="앞으로 이동">앞으로 ➡️</button>
             </div>
             <div class="control-group judgment-controls">
-                <button id="btn-normal" class="btn btn-success">✅ 이상 없음</button>
-                <button id="btn-anomaly" class="btn btn-danger">⚠️ 이상함!</button>
+                <button id="btn-normal" class="btn btn-success" aria-label="이상 없음 판단">✅ 이상 없음</button>
+                <button id="btn-anomaly" class="btn btn-danger" aria-label="이상함 판단">⚠️ 이상함!</button>
             </div>
         </footer>
     </div>
