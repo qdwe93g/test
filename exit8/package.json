@@ -1,0 +1,8 @@
+{
+  "name": "exit8-browser-mockup",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  }
+}

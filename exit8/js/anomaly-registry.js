@@ -115,6 +115,81 @@ export function getAnomalyData(type) {
   return ANOMALY_REGISTRY[type] || null;
 }
 
+/**
+ * Create an encounter factory with injectable randomness
+ * @param {Object} options
+ * @param {function(): number} [options.random=Math.random] - Injectable RNG
+ * @param {string[]} [options.anomalyIds] - List of anomaly IDs to use
+ * @param {number} [options.anomalyProbability=0.5] - Probability of anomaly (0-1)
+ * @returns {Object} Encounter factory with generate() method
+ */
+export function createEncounterFactory(options = {}) {
+  const random = options.random || Math.random;
+  const anomalyIds = options.anomalyIds || getAnomalyTypes();
+  const anomalyProbability = options.anomalyProbability !== undefined ? options.anomalyProbability : 0.5;
+  
+  let previousAnomalyId = null;
+  let encounterCounter = 0;
+  
+  return {
+    generate() {
+      encounterCounter++;
+      
+      // Decide if this encounter has an anomaly
+      const hasAnomaly = random() < anomalyProbability;
+      
+      if (!hasAnomaly) {
+        return {
+          id: `encounter-${encounterCounter}`,
+          anomalyId: null
+        };
+      }
+      
+      // Select an anomaly that is different from the previous one
+      let selectedAnomalyId;
+      const availableAnomalies = anomalyIds.filter(id => id !== previousAnomalyId);
+      
+      if (availableAnomalies.length === 0) {
+        // All anomalies are the same as previous (shouldn't happen with 2+ anomalies)
+        selectedAnomalyId = anomalyIds[Math.floor(random() * anomalyIds.length)];
+      } else {
+        selectedAnomalyId = availableAnomalies[Math.floor(random() * availableAnomalies.length)];
+      }
+      
+      previousAnomalyId = selectedAnomalyId;
+      
+      return {
+        id: `encounter-${encounterCounter}`,
+        anomalyId: selectedAnomalyId
+      };
+    },
+    
+    /**
+     * Set a deterministic sequence for testing
+     * @param {(string|null)[]} sequence - Array of anomaly IDs (null for normal)
+     */
+    setSequence(sequence) {
+      let index = 0;
+      this.generate = () => {
+        encounterCounter++;
+        const anomalyId = index < sequence.length ? sequence[index] : null;
+        index++;
+        if (anomalyId) {
+          previousAnomalyId = anomalyId;
+        }
+        return {
+          id: `encounter-${encounterCounter}`,
+          anomalyId
+        };
+      };
+    }
+  };
+}
+
+/**
+ * Get a random anomaly type (legacy, for backward compatibility)
+ * @deprecated Use createEncounterFactory instead
+ */
 export function getRandomAnomalyType() {
   const types = getAnomalyTypes();
   return types[Math.floor(Math.random() * types.length)];
