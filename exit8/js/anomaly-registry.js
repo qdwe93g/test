@@ -107,15 +107,58 @@ export const ANOMALY_REGISTRY = {
   }
 };
 
+const ANOMALY_TYPE_KEYS = Object.keys(ANOMALY_TYPES).map(k => ANOMALY_TYPES[k]);
+
 export function getAnomalyTypes() {
-  return Object.values(ANOMALY_TYPES);
+  return [...ANOMALY_TYPE_KEYS];
 }
 
 export function getAnomalyData(type) {
   return ANOMALY_REGISTRY[type] || null;
 }
 
-export function getRandomAnomalyType() {
-  const types = getAnomalyTypes();
-  return types[Math.floor(Math.random() * types.length)];
+/**
+ * @param {string|null} previousAnomalyId - 이전 이상 현상 ID (중복 방지용)
+ * @param {function(): number} rng - 랜덤 함수 (기본: Math.random)
+ * @returns {string|null} anomalyId or null for normal
+ */
+export function getRandomAnomalyType(previousAnomalyId = null, rng = Math.random) {
+  const availableTypes = ANOMALY_TYPE_KEYS.filter(id => id !== previousAnomalyId);
+  if (availableTypes.length === 0) {
+    return null;
+  }
+  const index = Math.floor(rng() * availableTypes.length);
+  return availableTypes[index];
+}
+
+/**
+ * Encounter factory 함수 생성기
+ * @param {{rng?: function(): number, normalProbability?: number}} options
+ * @returns {function(string|null): {id: string, anomalyId: string|null}}
+ */
+export function createEncounterFactory(options = {}) {
+  const rng = options.rng || Math.random;
+  const normalProbability = options.normalProbability ?? 0.5;
+  let encounterCounter = 0;
+
+  /**
+   * @param {string|null} previousAnomalyId
+   * @returns {{id: string, anomalyId: string|null}}
+   */
+  return function createEncounter(previousAnomalyId) {
+    encounterCounter++;
+
+    // 정상/이상 확률 결정
+    const isAnomaly = rng() < (1 - normalProbability);
+
+    let anomalyId = null;
+    if (isAnomaly) {
+      anomalyId = getRandomAnomalyType(previousAnomalyId, rng);
+    }
+
+    return {
+      id: `encounter-${encounterCounter}`,
+      anomalyId: anomalyId
+    };
+  };
 }

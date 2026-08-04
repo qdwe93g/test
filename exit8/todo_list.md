@@ -5,69 +5,81 @@ This document tracks remaining tasks and incomplete items for the Exit 8 game im
 
 ---
 
-## ✅ All Tasks Completed
+## ✅ Completed: Phase 1 - Core Game Engine Refactoring
 
-### Phase 1: Inline Styles Removal (High Priority)
-- [x] Moved all inline styles from `js/anomaly-registry.js` to `css/anomaly-renders.css`
-- [x] Updated all anomaly render configs to use CSS classes only
-- [x] Removed `style` objects from all anomaly types:
-  - [x] POSTER - position, colors, borders moved to CSS
-  - [x] LIGHT - position, animation, box-shadow moved to CSS
-  - [x] FLOOR - position, clip-path moved to CSS
-  - [x] SIGN - position, transform, typography moved to CSS
-  - [x] SHADOW - position, filter, transform moved to CSS
-  - [x] DOOR - position, borders moved to CSS
-  - [x] HAND - position, border-radius, transform moved to CSS
-  - [x] FIGURE - position, children elements moved to CSS
-- [x] Updated `js/renderer.js` to remove `Object.assign(this.anomalyElement.style, ...)` calls
-- [x] Verified visual appearance unchanged after refactoring
+### Stage A: Core state, input safety, and real tests
 
-### Phase 2: Fixed Container Size (Medium Priority)
-- [x] Replaced fixed dimensions (800px × 500px) with responsive units
-- [x] Used `width: 100%` with `max-width: 800px` for flexible sizing
-- [x] Added `aspect-ratio: 8 / 5` to maintain proper proportions
-- [x] Corridor now scales properly on all screen sizes
-- [x] Aspect ratio maintained across desktop, tablet, and mobile viewports
+#### A1. Extract a DOM-free game engine
+- [x] Created `exit8/js/game-engine.js` with pure game logic
+- [x] No DOM, window, setTimeout, or CSS access in engine
+- [x] Explicit state shape with phase, progress, encounter, previousAnomalyId, runId
+- [x] Encounter represented as single object with id and anomalyId
 
-### Phase 3: Duplicate CSS Classes (Low Priority)
-- [x] Removed duplicate `.hidden` class definition (lines 510-512)
-- [x] Verified no other duplicate utility classes exist
-- [x] CSS file cleaned up successfully
+#### A2. Apply specified game rules exactly
+- [x] Progress starts at 0
+- [x] Target is 8 consecutive correct choices
+- [x] "Go Forward" means player believes corridor is normal
+- [x] "Turn Back" means player detected an anomaly
+- [x] Either correct direction increments progress by one
+- [x] Wrong direction resets progress to 0
+- [x] Victory occurs when correct choice raises progress from 7 to 8
+- [x] One encounter changes progress at most once
+- [x] Choice accepted only while phase === 'observing'
 
----
+#### A3. Replace four-action UI with two meaningful actions
+- [x] Removed separate "No anomaly" and "Anomaly" controls from controller logic
+- [x] Kept only "Go Forward" and "Turn Back" as meaningful actions
+- [x] Note: HTML still has 4 buttons but controller uses only 2 direction actions
 
-## 📋 Completed Testing Checklist
+#### A4. Implement real transition lock
+- [x] Phase changes to 'transitioning' synchronously before animation
+- [x] Buttons disabled using real disabled property
+- [x] Additional pointer/keyboard actions ignored during transitioning
 
-### Inline Styles Removal
-- [x] All anomaly visual definitions use CSS classes
-- [x] No `style` property in `ANOMALY_REGISTRY` render configs
-- [x] Renderer applies classes correctly without inline styles
-- [x] Visual appearance unchanged after refactoring
-- [x] JavaScript syntax check passes
+#### A5. Own and cancel timers
+- [x] Controller keeps all timer IDs in activeTimers array
+- [x] cancelAllTimers() called on new run, menu return, reset
+- [x] runId tracking implemented
 
-### Responsive Container
-- [x] Corridor uses relative units (%, max-width, aspect-ratio)
-- [x] Proper scaling on 1920×1080 (desktop)
-- [x] Proper scaling on 1366×768 (laptop)
-- [x] Proper scaling on 768×1024 (tablet)
-- [x] Proper scaling on 375×667 (mobile)
-- [x] Aspect ratio maintained across all sizes
+#### A6. Inject randomness
+- [x] RNG passed into encounter factory, not called directly from engine
+- [x] Normal and anomalous encounters possible at any progress value
+- [x] Same anomaly cannot appear in consecutive encounters
+- [x] Tests can supply deterministic sequence
 
-### CSS Cleanup
-- [x] No duplicate class definitions
-- [x] CSS file reduced by removing redundant code
+#### A7. Replace test harness
+- [x] Created `exit8/tests/game-engine.test.js` with Node native test runner
+- [x] Created `exit8/package.json` with `npm test` script
+- [x] All 15 tests pass without DOM mocks
+- [x] Removed old browser-based game.test.js
 
 ---
 
-## 📝 Notes
+## 🔄 In Progress / Remaining Work
 
-- The game is **functional** and playable in its current state
-- All remaining improvement items have been completed
-- Code quality and maintainability significantly improved
-- Separation of concerns achieved (CSS for styles, JS for logic)
-- Responsive design principles now applied to corridor container
+### Stage B: Keyboard correctness, accessibility, and responsive layout
+- [ ] B1. Preserve native button keyboard behavior (Enter/Space on focused buttons)
+- [ ] B2. Manage focus and inactive screens
+- [ ] B3. Repair mobile layout (375x667, 390x844 viewport assertions)
+- [ ] B4. Make reduced motion effective
+- [ ] B5. Remove duplicate CSS definitions (.fade-in, @keyframes flicker, @keyframes glow)
+
+### Stage C: Observation design, repository cleanup, and accurate documentation
+- [ ] C1. Build stable normal scene with baseline objects
+- [ ] C2. Reconcile anomaly registry and documentation (8 anomalies confirmed)
+- [ ] C3. Create proper .gitignore in exit8/ directory
+- [ ] C4. Update todo_list.md and READMEs with accurate completion status
+
+---
+
+## 📋 Notes
+
+- Game engine is fully tested with 15 passing tests
+- GameController handles DOM interaction separately from game logic
+- Old game.js file exists but is no longer used by main.js
+- Next priority: Stage B (keyboard, accessibility, responsive layout)
 
 ---
 
 *Last Updated: 2026-08-04*
-*Status: All TODO items completed ✅*
+*Status: Phase 1 (Stage A) Complete ✅*
