@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exit 8 - 8 번 출구를 찾아라</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- 메인 메뉴 화면 -->
+    <div id="menu-screen" class="screen active">
+        <div class="menu-content">
+            <h1 class="game-title">EXIT 8</h1>
+            <p class="subtitle">8 번 출구를 찾아라</p>
+            <button id="start-btn" class="btn btn-primary">게임 시작</button>
+            <div class="instructions">
+                <h3>🎮 게임 방법</h3>
+                <ul>
+                    <li>지하철 통로를 따라 8 번 출구까지 가세요</li>
+                    <li>각 라운드에서 <strong>이상한 점</strong>을 찾아주세요</li>
+                    <li>이상이 없으면 <strong>앞으로</strong>, 이상하면 <strong>뒤로</strong> 돌아가세요</li>
+                    <li>8 개의 라운드를 모두 통과하면 탈출 성공!</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 게임 화면 -->
+    <div id="game-screen" class="screen">
+        <header class="game-header">
+            <div class="round-display">
+                <span>라운드</span>
+                <span id="current-round">1</span>
+                <span>/ 8</span>
+            </div>
+            <div class="status-display">
+                <span id="status-text">통로를 탐색하세요</span>
+            </div>
+        </header>
+
+        <main class="game-view">
+            <div id="corridor-container" class="corridor">
+                <!-- 통로 렌더링 영역 -->
+                <div class="corridor-wall left-wall"></div>
+                <div class="corridor-wall right-wall"></div>
+                <div class="corridor-floor"></div>
+                <div class="corridor-ceiling"></div>
+                <div class="corridor-back"></div>
+                
+                <!-- 이상 현상 요소들 (동적 추가) -->
+                <div id="anomaly-container"></div>
+            </div>
+        </main>
+
+        <footer class="game-controls">
+            <div class="control-group">
+                <button id="btn-back" class="btn btn-secondary">⬅️ 뒤로</button>
+                <button id="btn-forward" class="btn btn-primary">앞으로 ➡️</button>
+            </div>
+            <div class="control-group judgment-controls">
+                <button id="btn-normal" class="btn btn-success">✅ 이상 없음</button>
+                <button id="btn-anomaly" class="btn btn-danger">⚠️ 이상함!</button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 결과 화면 -->
+    <div id="result-screen" class="screen">
+        <div class="result-content">
+            <h2 id="result-title">결과</h2>
+            <p id="result-message">메시지</p>
+            <div id="result-stats">
+                <p>도달 라운드: <span id="final-round">0</span> / 8</p>
+            </div>
+            <button id="restart-btn" class="btn btn-primary">다시 시작</button>
+            <button id="menu-btn" class="btn btn-secondary">메인으로</button>
+        </div>
+    </div>
+
+    <script src="js/game.js"></script>
+    <script src="js/renderer.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
