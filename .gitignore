@@ -3,6 +3,8 @@
 __pycache__/
 *.o
 *.obj
+dist/
+build/
 *.class
 *.exe
 *.dll
@@ -14,12 +16,10 @@ __pycache__/
 .venv/
 venv/
 node_modules/
-dist/
-build/
-target/
-.gradle/
 .mypy_cache/
 .pytest_cache/
+target/
+.gradle/
 
 # Logs and temp files
 *.log
@@ -30,7 +30,7 @@ target/
 # Environment
 .env
 .env.local
-.env.*
+*.env.*
 
 # Editors
 .vscode/
@@ -38,7 +38,7 @@ target/
 *.swp
 *.swo
 
-# System files
+# System
 .DS_Store
 Thumbs.db
 
