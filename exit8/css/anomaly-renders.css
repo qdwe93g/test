@@ -2,12 +2,24 @@
 
 /* 포스터 변화 */
 .anomaly-poster {
+  position: absolute;
+  left: 10%;
+  top: 30%;
+  width: 15%;
+  height: 20%;
   background-color: #ff6b6b !important;
   border: 2px solid #333 !important;
+  z-index: 2;
 }
 
 /* 조명 깜빡임 */
 .anomaly-light {
+  position: absolute;
+  left: 50%;
+  top: 5%;
+  transform: translateX(-50%);
+  width: 40%;
+  height: 10px;
   background-color: #ffeb3b !important;
   box-shadow: 0 0 15px #ffeb3b !important;
   animation: flicker 0.5s infinite !important;
@@ -20,12 +32,23 @@
 
 /* 바닥 무늬 이상 */
 .anomaly-floor {
+  position: absolute;
+  left: 30%;
+  bottom: 10%;
+  width: 40%;
+  height: 10%;
   background-color: #4a4a4a !important;
   clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 20% 100%) !important;
+  z-index: 1;
 }
 
 /* 표지판 오류 */
 .anomaly-sign {
+  position: absolute;
+  right: 15%;
+  top: 25%;
+  width: 8%;
+  height: 8%;
   background-color: #fff !important;
   border: 2px solid green !important;
   color: green !important;
@@ -35,40 +58,78 @@
   font-size: 20px !important;
   font-weight: bold !important;
   transform: rotate(180deg) !important;
+  z-index: 3;
 }
 
 /* 이상한 그림자 */
 .anomaly-shadow {
+  position: absolute;
+  left: 70%;
+  top: 40%;
+  width: 10%;
+  height: 30%;
   background-color: rgba(0,0,0,0.6) !important;
   filter: blur(5px) !important;
   transform: skewX(-20deg) !important;
+  z-index: 1;
 }
 
 /* 비상구 문 개방 */
 .anomaly-door {
+  position: absolute;
+  left: 5%;
+  top: 20%;
+  width: 12%;
+  height: 35%;
   background-color: #222 !important;
   border: 3px solid #555 !important;
+  z-index: 2;
 }
 
 /* 손 등장 */
 .anomaly-hand {
+  position: absolute;
+  right: 20%;
+  top: 50%;
+  width: 60px;
+  height: 80px;
   background-color: #ffccbc !important;
   border-radius: 30px 30px 10px 10px !important;
   box-shadow: inset -5px -5px 10px rgba(0,0,0,0.2) !important;
+  z-index: 4;
   transform: rotate(-10deg) !important;
 }
 
 /* 검은 형상 */
 .anomaly-figure {
+  position: absolute;
+  left: 50%;
+  top: 35%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 100px;
   background-color: #000 !important;
   border-radius: 20px 20px 0 0 !important;
+  z-index: 1;
   opacity: 0.9 !important;
 }
 
 .anomaly-figure .eyes {
+  position: absolute;
+  top: 20px;
+  width: 6px;
+  height: 6px;
   background-color: #fff !important;
   border-radius: 50% !important;
   animation: glow 2s infinite !important;
+}
+
+.anomaly-figure .eyes:first-child {
+  left: 10px;
+}
+
+.anomaly-figure .eyes:last-child {
+  right: 10px;
 }
 
 @keyframes glow {

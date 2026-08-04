@@ -48,9 +48,6 @@ export class Renderer {
       this.anomalyElement.className = config.class;
     }
     
-    // 스타일 적용
-    Object.assign(this.anomalyElement.style, config.style);
-    
     // 내용물 설정
     if (config.content !== undefined) {
       this.anomalyElement.textContent = config.content;
@@ -63,7 +60,6 @@ export class Renderer {
         if (childConfig.class) {
           childElement.className = childConfig.class;
         }
-        Object.assign(childElement.style, childConfig.style);
         if (childConfig.content !== undefined) {
           childElement.textContent = childConfig.content;
         }
