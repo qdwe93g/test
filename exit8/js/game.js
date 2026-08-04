@@ -428,14 +428,23 @@ class Game {
      */
     switchScreen(screenName) {
         // 모든 화면 숨기기
-        Object.values(this.elements).forEach(el => {
-            if (el && el.classList && el.classList.contains('screen')) {
-                el.classList.remove('active');
-            }
+        const screens = document.querySelectorAll('.screen');
+        screens.forEach(screen => {
+            screen.classList.remove('active');
         });
 
         // 해당 화면 표시
-        const targetScreen = this.elements[`${screenName}Screen`];
+        let targetScreen;
+        if (screenName === 'menu') {
+            targetScreen = this.elements.menuScreen;
+        } else if (screenName === 'anomaly-list') {
+            targetScreen = this.elements.anomalyListScreen;
+        } else if (screenName === 'game') {
+            targetScreen = this.elements.gameScreen;
+        } else if (screenName === 'result') {
+            targetScreen = this.elements.resultScreen;
+        }
+        
         if (targetScreen) {
             targetScreen.classList.add('active');
             targetScreen.classList.add('fade-in');

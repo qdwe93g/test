@@ -87,9 +87,10 @@ body {
 
 /* ============ 이상 현상 목록 화면 ============ */
 #anomaly-list-screen {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%); /* 밝은 배경 */
     overflow-y: auto;
     display: none; /* 기본적으로 숨김 */
+    color: #333; /* 어두운 텍스트 */
 }
 
 #anomaly-list-screen.active {
@@ -105,6 +106,9 @@ body {
     max-width: 900px;
     width: 100%;
     animation: slideIn 0.3s ease-out;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 @keyframes slideIn {
@@ -121,7 +125,7 @@ body {
 .list-title {
     font-size: 2.5rem;
     font-weight: 900;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -131,7 +135,7 @@ body {
 
 .list-subtitle {
     font-size: 1.2rem;
-    color: #aaa;
+    color: #666;
     margin-bottom: 30px;
 }
 
@@ -144,17 +148,18 @@ body {
 }
 
 .anomaly-card {
-    background: rgba(255, 255, 255, 0.05);
+    background: #fff;
+    border: 2px solid #ddd;
     border-radius: 12px;
     padding: 20px;
     transition: all 0.3s ease;
-    border: 2px solid transparent;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .anomaly-card:hover {
     transform: translateY(-5px);
-    border-color: #667eea;
-    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+    border-color: #d32f2f;
+    box-shadow: 0 8px 20px rgba(211, 47, 47, 0.3);
 }
 
 .anomaly-icon {
@@ -165,13 +170,13 @@ body {
 .anomaly-name {
     font-size: 1.3rem;
     font-weight: bold;
-    color: #667eea;
+    color: #d32f2f;
     margin-bottom: 10px;
 }
 
 .anomaly-description {
     font-size: 0.95rem;
-    color: #ccc;
+    color: #555;
     line-height: 1.6;
     text-align: left;
 }
@@ -179,10 +184,10 @@ body {
 .anomaly-example {
     margin-top: 15px;
     padding: 10px;
-    background: rgba(0, 0, 0, 0.3);
+    background: #ffebee;
     border-radius: 8px;
     font-size: 0.9rem;
-    color: #ff6b6b;
+    color: #c62828;
     text-align: left;
 }
 
