@@ -1,0 +1,77 @@
+/* 이상 현상 DOM 렌더링 스타일 */
+
+/* 포스터 변화 */
+.anomaly-poster {
+  background-color: #ff6b6b !important;
+  border: 2px solid #333 !important;
+}
+
+/* 조명 깜빡임 */
+.anomaly-light {
+  background-color: #ffeb3b !important;
+  box-shadow: 0 0 15px #ffeb3b !important;
+  animation: flicker 0.5s infinite !important;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* 바닥 무늬 이상 */
+.anomaly-floor {
+  background-color: #4a4a4a !important;
+  clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 20% 100%) !important;
+}
+
+/* 표지판 오류 */
+.anomaly-sign {
+  background-color: #fff !important;
+  border: 2px solid green !important;
+  color: green !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 20px !important;
+  font-weight: bold !important;
+  transform: rotate(180deg) !important;
+}
+
+/* 이상한 그림자 */
+.anomaly-shadow {
+  background-color: rgba(0,0,0,0.6) !important;
+  filter: blur(5px) !important;
+  transform: skewX(-20deg) !important;
+}
+
+/* 비상구 문 개방 */
+.anomaly-door {
+  background-color: #222 !important;
+  border: 3px solid #555 !important;
+}
+
+/* 손 등장 */
+.anomaly-hand {
+  background-color: #ffccbc !important;
+  border-radius: 30px 30px 10px 10px !important;
+  box-shadow: inset -5px -5px 10px rgba(0,0,0,0.2) !important;
+  transform: rotate(-10deg) !important;
+}
+
+/* 검은 형상 */
+.anomaly-figure {
+  background-color: #000 !important;
+  border-radius: 20px 20px 0 0 !important;
+  opacity: 0.9 !important;
+}
+
+.anomaly-figure .eyes {
+  background-color: #fff !important;
+  border-radius: 50% !important;
+  animation: glow 2s infinite !important;
+}
+
+@keyframes glow {
+  0%, 100% { opacity: 1; box-shadow: 0 0 5px #fff; }
+  50% { opacity: 0.5; box-shadow: 0 0 2px #fff; }
+}

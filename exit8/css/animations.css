@@ -261,6 +261,16 @@
     animation: shadowMove 4s ease-in-out infinite;
 }
 
+/* ============ 형상 눈빛 효과 ============ */
+@keyframes glow {
+    0%, 100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
 /* ============ 로딩 효과 ============ */
 @keyframes loading {
     0% {
