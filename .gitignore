@@ -2,30 +2,15 @@
 # Compiled and build artifacts
 *.pyc
 __pycache__/
-*.o
-*.obj
-dist/
-build/
-target/
 
 # Dependencies
 .venv/
 venv/
-node_modules/
-.mypy_cache/
-.pytest_cache/
-.gradle/
-julia-*/
-zig*/
 
 # Logs and temp files
 *.log
 *.tmp
 *.swp
-*.swo
-coverage/
-htmlcov/
-.coverage
 
 # Environment
 .env
@@ -35,10 +20,4 @@ htmlcov/
 # Editors
 .vscode/
 .idea/
-*.swp
-*.swo
-
-# System
-.DS_Store
-Thumbs.db
 ```
